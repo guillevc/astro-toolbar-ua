@@ -1,16 +1,10 @@
 # astro-toolbar-ua
 
-Astro dev toolbar app for switching user agent strings. Test platform detection, bot crawlers, and browser-specific behavior without leaving the browser.
+Astro dev toolbar app for switching user agent strings. Test platform detection and browser-specific behavior without leaving the browser.
 
 <!-- TODO: screenshot -->
 
 ## Install
-
-```bash
-npx astro add astro-toolbar-ua
-```
-
-Or manually:
 
 ```bash
 npm install -D astro-toolbar-ua
@@ -34,12 +28,11 @@ A notification dot on the toolbar icon indicates when a UA override is active.
 
 ## Presets
 
-| Category      | Presets                                           |
-| ------------- | ------------------------------------------------- |
-| **Platforms** | macOS (Chrome), Windows (Chrome), Linux (Chrome)  |
-| **Mobile**    | iOS (Safari), Android (Chrome)                    |
-| **Browsers**  | Safari (macOS), Firefox (macOS), Edge (Windows)   |
-| **Bots**      | Googlebot, Bingbot, Facebook Crawler, Twitter Bot |
+| Category     | Presets                    |
+| ------------ | -------------------------- |
+| **Desktop**  | macOS, Windows, Linux      |
+| **Mobile**   | iOS, Android               |
+| **Browsers** | Safari, Firefox, Edge      |
 
 Custom UA strings can be entered directly in the text input.
 
