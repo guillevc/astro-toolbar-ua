@@ -1,8 +1,8 @@
 # astro-toolbar-ua
 
-Astro dev toolbar app for switching user agent strings. Test platform detection and browser-specific behavior without leaving the browser.
+Switch user agent strings from the Astro dev toolbar. Test platform detection and browser-specific behavior without leaving your browser.
 
-<!-- TODO: screenshot -->
+![astro-toolbar-ua panel showing preset UA options for Desktop, Mobile, and Browsers](docs/screenshot.png)
 
 ## Install
 
@@ -22,11 +22,11 @@ export default defineConfig({
 
 ## Usage
 
-Click the **UA Switch** icon in the Astro dev toolbar to open the panel. Select a preset or paste a custom UA string. The page reloads automatically with the new user agent applied.
+Open the **UA Switch** panel in the Astro dev toolbar. Pick a preset or paste a custom UA string. The page reloads with the new user agent applied.
 
-A notification dot on the toolbar icon indicates when a UA override is active.
+A notification dot appears on the toolbar icon when a UA override is active.
 
-## Presets
+### Presets
 
 | Category     | Presets                    |
 | ------------ | -------------------------- |
@@ -34,13 +34,13 @@ A notification dot on the toolbar icon indicates when a UA override is active.
 | **Mobile**   | iOS, Android               |
 | **Browsers** | Safari, Firefox, Edge      |
 
-Custom UA strings can be entered directly in the text input.
+You can also enter any custom UA string directly.
 
 ## How it works
 
-1. The integration injects a synchronous `<head>` script that reads a `localStorage` key and overrides `navigator.userAgent` via `Object.defineProperty` — before any page scripts run
-2. The toolbar app UI writes the selected UA string to `localStorage` and reloads the page
-3. The override only runs during `astro dev` — production builds are not affected
+1. A synchronous `<head>` script reads a `localStorage` key and overrides `navigator.userAgent` via `Object.defineProperty` — before any page scripts run
+2. The toolbar UI writes the selected UA string to `localStorage` and reloads the page
+3. Only runs during `astro dev` — production builds are not affected
 
 ## Limitations
 
