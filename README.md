@@ -42,11 +42,11 @@ A notification dot appears on the toolbar icon when a UA override is active.
 
 ### Presets
 
-| Category     | Presets                    |
-| ------------ | -------------------------- |
-| **Desktop**  | macOS, Windows, Linux      |
-| **Mobile**   | iOS, Android               |
-| **Browsers** | Safari, Firefox, Edge      |
+| Category     | Presets               |
+| ------------ | --------------------- |
+| **Desktop**  | macOS, Windows, Linux |
+| **Mobile**   | iOS, Android          |
+| **Browsers** | Safari, Firefox, Edge |
 
 You can also enter any custom UA string directly.
 

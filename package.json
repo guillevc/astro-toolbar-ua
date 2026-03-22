@@ -12,8 +12,9 @@
   },
   "scripts": {
     "dev": "pnpm -C example dev",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "publish:package": "npm publish -w packages/astro-toolbar-ua"
   },
   "devDependencies": {
     "prettier": "^3.8.1"

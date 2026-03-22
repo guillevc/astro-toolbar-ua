@@ -7,8 +7,12 @@
     ".": "./src/index.ts"
   },
   "files": [
-    "src"
+    "src",
+    "README.md"
   ],
+  "scripts": {
+    "prepack": "cp ../../README.md ."
+  },
   "keywords": [
     "astro-integration",
     "withastro",
