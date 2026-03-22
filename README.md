@@ -1,5 +1,8 @@
 # astro-toolbar-ua
 
+[![npm version](https://img.shields.io/npm/v/astro-toolbar-ua)](https://www.npmjs.com/package/astro-toolbar-ua)
+[![license](https://img.shields.io/npm/l/astro-toolbar-ua)](LICENSE)
+
 Switch user agent strings from the Astro dev toolbar. Test platform detection and browser-specific behavior without leaving your browser.
 
 ![astro-toolbar-ua panel showing preset UA options for Desktop, Mobile, and Browsers](docs/screenshot.png)
