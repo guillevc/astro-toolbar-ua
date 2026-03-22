@@ -6,7 +6,21 @@ Switch user agent strings from the Astro dev toolbar. Test platform detection an
 
 ## Install
 
-```bash
+```sh
+npx astro add astro-toolbar-ua
+```
+
+```sh
+pnpm astro add astro-toolbar-ua
+```
+
+```sh
+yarn astro add astro-toolbar-ua
+```
+
+Or install manually:
+
+```sh
 npm install -D astro-toolbar-ua
 ```
 
