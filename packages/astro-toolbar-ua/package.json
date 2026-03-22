@@ -1,0 +1,26 @@
+{
+  "name": "astro-toolbar-ua",
+  "version": "0.1.0",
+  "description": "Astro dev toolbar app for switching user agent strings — test platform detection, bot crawlers, and browser-specific behavior without leaving the browser.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": ["src"],
+  "keywords": [
+    "astro-integration",
+    "withastro",
+    "dev-toolbar",
+    "user-agent",
+    "testing"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/guillevc/astro-toolbar-ua#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guillevc/astro-toolbar-ua"
+  },
+  "peerDependencies": {
+    "astro": "^4.7.0 || ^5.0.0 || ^6.0.0"
+  }
+}
