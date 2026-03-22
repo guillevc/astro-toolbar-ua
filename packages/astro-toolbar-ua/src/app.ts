@@ -1,4 +1,5 @@
 import { defineToolbarApp } from "astro/toolbar";
+import { ICONS } from "./icons.ts";
 import { PRESETS, STORAGE_KEY } from "./presets.ts";
 
 export default defineToolbarApp({
@@ -14,19 +15,12 @@ export default defineToolbarApp({
 
     // Window container
     const win = document.createElement("astro-dev-toolbar-window");
+    win.style.cssText = "overflow-y: auto; max-height: 100%;";
 
     // Header
-    const header = document.createElement("header");
-    header.innerHTML = `
-      <h2 style="margin: 0 0 4px; font-size: 14px; font-weight: 600; color: white;">
-        UA Switch
-      </h2>
-      <p style="margin: 0 0 12px; font-size: 12px; color: rgba(255,255,255,0.6);">
-        Active: <strong style="color: ${isOverridden ? "#a78bfa" : "rgba(255,255,255,0.8)"}">
-          ${activePreset?.label ?? (isOverridden ? "Custom" : "Default")}
-        </strong>
-      </p>
-    `;
+    const header = document.createElement("h2");
+    header.textContent = "UA Switch";
+    header.style.cssText = "margin: 0 0 12px; font-size: 14px; font-weight: 600; color: white;";
     win.appendChild(header);
 
     // Group presets by category
@@ -39,39 +33,48 @@ export default defineToolbarApp({
       const label = document.createElement("div");
       label.textContent = category;
       label.style.cssText =
-        "font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;";
+        "font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;";
       group.appendChild(label);
+
+      const row = document.createElement("div");
+      row.style.cssText = "display: flex; gap: 6px; flex-wrap: wrap;";
 
       const presets = PRESETS.filter((p) => p.category === category);
       for (const preset of presets) {
         const btn = document.createElement("button");
         const isActive = stored === preset.ua;
-        btn.textContent = preset.label;
+        btn.innerHTML = `
+          <span style="display: block; margin-bottom: 4px; line-height: 0;">${preset.icon}</span>
+          <span style="font-size: 11px;">${preset.label}</span>
+        `;
         btn.style.cssText = `
-          display: block; width: 100%; text-align: left; padding: 6px 8px;
-          background: ${isActive ? "rgba(167, 139, 250, 0.15)" : "transparent"};
-          border: 1px solid ${isActive ? "rgba(167, 139, 250, 0.4)" : "transparent"};
-          border-radius: 6px; color: ${isActive ? "#a78bfa" : "rgba(255,255,255,0.8)"};
-          font-size: 13px; cursor: pointer; margin-bottom: 2px;
-          font-family: system-ui, -apple-system, sans-serif;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          padding: 8px 10px; min-width: 60px; flex: 1;
+          background: ${isActive ? "rgba(167, 139, 250, 0.15)" : "rgba(255,255,255,0.03)"};
+          border: 1px solid ${isActive ? "rgba(167, 139, 250, 0.4)" : "rgba(255,255,255,0.08)"};
+          border-radius: 8px; color: ${isActive ? "#a78bfa" : "rgba(255,255,255,0.8)"};
+          cursor: pointer; font-family: system-ui, -apple-system, sans-serif;
         `;
         btn.addEventListener("mouseenter", () => {
           if (stored !== preset.ua) {
-            btn.style.background = "rgba(255,255,255,0.05)";
+            btn.style.background = "rgba(255,255,255,0.07)";
+            btn.style.borderColor = "rgba(255,255,255,0.15)";
           }
         });
         btn.addEventListener("mouseleave", () => {
           if (stored !== preset.ua) {
-            btn.style.background = "transparent";
+            btn.style.background = "rgba(255,255,255,0.03)";
+            btn.style.borderColor = "rgba(255,255,255,0.08)";
           }
         });
         btn.addEventListener("click", () => {
           localStorage.setItem(STORAGE_KEY, preset.ua);
-          window.location.reload();
+          location.reload();
         });
-        group.appendChild(btn);
+        row.appendChild(btn);
       }
 
+      group.appendChild(row);
       win.appendChild(group);
     }
 
@@ -82,10 +85,14 @@ export default defineToolbarApp({
     win.appendChild(sep);
 
     // Custom UA input
+    const isCustomActive = isOverridden && !activePreset;
+
     const customLabel = document.createElement("div");
     customLabel.textContent = "Custom";
-    customLabel.style.cssText =
-      "font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;";
+    customLabel.style.cssText = `
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+      color: ${isCustomActive ? "#a78bfa" : "rgba(255,255,255,0.5)"};
+    `;
     win.appendChild(customLabel);
 
     const inputRow = document.createElement("div");
@@ -94,19 +101,20 @@ export default defineToolbarApp({
     const input = document.createElement("input");
     input.type = "text";
     input.placeholder = "Paste UA string...";
-    input.value =
-      isOverridden && !activePreset ? (stored ?? "") : "";
+    input.value = isCustomActive ? (stored ?? "") : "";
     input.style.cssText = `
-      flex: 1; padding: 6px 8px; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
-      color: white; font-size: 12px; font-family: ui-monospace, monospace;
-      outline: none;
+      flex: 1; padding: 6px 8px;
+      background: ${isCustomActive ? "rgba(167, 139, 250, 0.15)" : "rgba(255,255,255,0.05)"};
+      border: 1px solid ${isCustomActive ? "rgba(167, 139, 250, 0.4)" : "rgba(255,255,255,0.1)"};
+      border-radius: 6px; color: ${isCustomActive ? "#a78bfa" : "white"};
+      font-size: 12px; font-family: ui-monospace, monospace; outline: none;
     `;
+    const defaultInputBorder = isCustomActive ? "rgba(167, 139, 250, 0.4)" : "rgba(255,255,255,0.1)";
     input.addEventListener("focus", () => {
       input.style.borderColor = "rgba(167, 139, 250, 0.4)";
     });
     input.addEventListener("blur", () => {
-      input.style.borderColor = "rgba(255,255,255,0.1)";
+      input.style.borderColor = defaultInputBorder;
     });
 
     const applyBtn = document.createElement("button");
@@ -121,7 +129,7 @@ export default defineToolbarApp({
       const value = input.value.trim();
       if (value) {
         localStorage.setItem(STORAGE_KEY, value);
-        window.location.reload();
+        location.reload();
       }
     });
 
@@ -131,16 +139,30 @@ export default defineToolbarApp({
 
     // Reset button
     const resetBtn = document.createElement("button");
-    resetBtn.textContent = "Reset to default";
+    resetBtn.innerHTML = `<span style="margin-right: 6px; line-height: 0;">${ICONS.rotateCcw}</span>Reset`;
     resetBtn.style.cssText = `
-      display: block; width: 100%; padding: 6px 8px;
-      background: transparent; border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 6px; color: rgba(255,255,255,0.6); font-size: 12px;
-      cursor: pointer; font-family: system-ui, -apple-system, sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: 8px 10px;
+      background: ${isOverridden ? "rgba(239, 68, 68, 0.1)" : "rgba(255,255,255,0.03)"};
+      border: 1px solid ${isOverridden ? "rgba(239, 68, 68, 0.3)" : "rgba(255,255,255,0.08)"};
+      border-radius: 8px;
+      color: ${isOverridden ? "#f87171" : "rgba(255,255,255,0.4)"};
+      font-size: 12px; cursor: ${isOverridden ? "pointer" : "default"};
+      font-family: system-ui, -apple-system, sans-serif;
     `;
+    if (isOverridden) {
+      resetBtn.addEventListener("mouseenter", () => {
+        resetBtn.style.background = "rgba(239, 68, 68, 0.18)";
+        resetBtn.style.borderColor = "rgba(239, 68, 68, 0.45)";
+      });
+      resetBtn.addEventListener("mouseleave", () => {
+        resetBtn.style.background = "rgba(239, 68, 68, 0.1)";
+        resetBtn.style.borderColor = "rgba(239, 68, 68, 0.3)";
+      });
+    }
     resetBtn.addEventListener("click", () => {
       localStorage.removeItem(STORAGE_KEY);
-      window.location.reload();
+      location.reload();
     });
     win.appendChild(resetBtn);
 
