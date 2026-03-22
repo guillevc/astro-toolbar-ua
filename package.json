@@ -11,6 +11,11 @@
     }
   },
   "scripts": {
-    "dev": "pnpm -C example dev"
+    "dev": "pnpm -C example dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1"
   }
 }

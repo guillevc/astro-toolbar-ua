@@ -20,7 +20,8 @@ export default defineToolbarApp({
     // Header
     const header = document.createElement("h2");
     header.textContent = "UA Switch";
-    header.style.cssText = "margin: 0 0 12px; font-size: 14px; font-weight: 600; color: white;";
+    header.style.cssText =
+      "margin: 0 0 12px; font-size: 14px; font-weight: 600; color: white;";
     win.appendChild(header);
 
     // Group presets by category
@@ -109,7 +110,9 @@ export default defineToolbarApp({
       border-radius: 6px; color: ${isCustomActive ? "#a78bfa" : "white"};
       font-size: 12px; font-family: ui-monospace, monospace; outline: none;
     `;
-    const defaultInputBorder = isCustomActive ? "rgba(167, 139, 250, 0.4)" : "rgba(255,255,255,0.1)";
+    const defaultInputBorder = isCustomActive
+      ? "rgba(167, 139, 250, 0.4)"
+      : "rgba(255,255,255,0.1)";
     input.addEventListener("focus", () => {
       input.style.borderColor = "rgba(167, 139, 250, 0.4)";
     });

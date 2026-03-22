@@ -34,12 +34,12 @@ A notification dot on the toolbar icon indicates when a UA override is active.
 
 ## Presets
 
-| Category | Presets |
-|----------|---------|
-| **Platforms** | macOS (Chrome), Windows (Chrome), Linux (Chrome) |
-| **Mobile** | iOS (Safari), Android (Chrome) |
-| **Browsers** | Safari (macOS), Firefox (macOS), Edge (Windows) |
-| **Bots** | Googlebot, Bingbot, Facebook Crawler, Twitter Bot |
+| Category      | Presets                                           |
+| ------------- | ------------------------------------------------- |
+| **Platforms** | macOS (Chrome), Windows (Chrome), Linux (Chrome)  |
+| **Mobile**    | iOS (Safari), Android (Chrome)                    |
+| **Browsers**  | Safari (macOS), Firefox (macOS), Edge (Windows)   |
+| **Bots**      | Googlebot, Bingbot, Facebook Crawler, Twitter Bot |
 
 Custom UA strings can be entered directly in the text input.
 
