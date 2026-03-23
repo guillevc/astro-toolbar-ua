@@ -142,7 +142,7 @@ export default defineToolbarApp({
 
     // Reset button
     const resetBtn = document.createElement("button");
-    resetBtn.innerHTML = `<span style="margin-right: 6px; line-height: 0;">${ICONS.rotateCcw}</span>Reset`;
+    resetBtn.innerHTML = `<span style="margin-right: 6px; line-height: 0;">${ICONS.undo}</span>Reset`;
     resetBtn.style.cssText = `
       display: flex; align-items: center; justify-content: center;
       width: 100%; padding: 8px 10px;
