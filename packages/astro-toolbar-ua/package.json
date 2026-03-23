@@ -16,9 +16,12 @@
   "keywords": [
     "astro-integration",
     "withastro",
+    "astro",
     "dev-toolbar",
+    "toolbar",
     "user-agent",
-    "testing"
+    "ua",
+    "browser-testing"
   ],
   "author": "guillevc",
   "license": "MIT",
