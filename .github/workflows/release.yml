@@ -13,18 +13,18 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: package.json
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
 
-      - run: npm publish --provenance --access public
+      - run: npm publish --access public
         working-directory: packages/astro-toolbar-ua
 
       - run: gh release create "${{ github.ref_name }}" --generate-notes
