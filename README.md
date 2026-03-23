@@ -3,21 +3,22 @@
 [![npm version](https://img.shields.io/npm/v/astro-toolbar-ua)](https://www.npmjs.com/package/astro-toolbar-ua)
 [![license](https://img.shields.io/npm/l/astro-toolbar-ua)](LICENSE)
 
-Switch user agent strings from the Astro dev toolbar. Test platform detection and browser-specific behavior without leaving your browser.
+Test platform detection and browser-specific behavior without leaving your browser — switch user agent strings directly from the Astro dev toolbar.
 
 ![astro-toolbar-ua panel showing preset UA options for Desktop, Mobile, and Browsers](docs/screenshot.png)
 
 ## Install
 
+Need to check how your site behaves on iOS, Android, or Safari? Add it in one command:
+
 ```sh
+# npm
 npx astro add astro-toolbar-ua
-```
 
-```sh
+# pnpm
 pnpm astro add astro-toolbar-ua
-```
 
-```sh
+# yarn
 yarn astro add astro-toolbar-ua
 ```
 
@@ -59,7 +60,7 @@ You can also enter any custom UA string directly.
 2. The toolbar UI writes the selected UA string to `localStorage` and reloads the page
 3. Only runs during `astro dev` — production builds are not affected
 
-## Limitations
+## Good to know
 
 - Only overrides client-side `navigator.userAgent`. Does not modify server-side request headers.
 - `Object.defineProperty` on `navigator.userAgent` works in Chromium and Firefox. Safari may not support it in all versions.
