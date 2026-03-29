@@ -1,5 +1,6 @@
 # astro-toolbar-ua
 
+[![Star on GitHub](https://img.shields.io/badge/Star_on_GitHub-bc52ee?style=for-the-badge&logo=github&logoColor=white)](https://github.com/guillevc/astro-toolbar-ua)
 [![npm version](https://img.shields.io/npm/v/astro-toolbar-ua)](https://www.npmjs.com/package/astro-toolbar-ua)
 [![license](https://img.shields.io/npm/l/astro-toolbar-ua)](LICENSE)
 
@@ -64,6 +65,10 @@ You can also enter any custom UA string directly.
 
 - Only overrides client-side `navigator.userAgent`. Does not modify server-side request headers.
 - `Object.defineProperty` on `navigator.userAgent` works in Chromium and Firefox. Safari may not support it in all versions.
+
+## Support
+
+If you find this useful, [star the repo on GitHub](https://github.com/guillevc/astro-toolbar-ua) — it helps others discover it.
 
 ## License
 
